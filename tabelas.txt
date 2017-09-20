@@ -1,6 +1,19 @@
 -- Tabelas
-CREATE TABLE Cliente (Codigo INT, Nome VARCHAR2(40), Sobrenome VARCHAR2(40), DataNascimento DATE,Endereco 
-VARCHAR2(255), Cep VARCHAR2(8), Cidade VARCHAR2(255), Estado VARCHAR2(255)); -- Tirabassi
+DROP TABLE Cliente;
+DROP TABLE Instalacao;
+DROP TABLE Regiao;
+DROP TABLE ReclamacaoInstalacao;
+DROP TABLE Feedback;
+DROP TABLE Chamado;
+
+DROP SEQUENCE Cliente_seq;
+DROP SEQUENCE Instalacao_seq;
+DROP SEQUENCE Regiao_seq;
+DROP SEQUENCE ReclamacaoInstalacao_seq;
+DROP SEQUENCE Feedback_seq;
+DROP SEQUENCE Chamado_seq;
+
+CREATE TABLE Cliente (Codigo INT, Nome VARCHAR2(40), Sobrenome VARCHAR2(40), DataNascimento DATE,Endereco VARCHAR2(255), Cep VARCHAR2(8), Cidade VARCHAR2(255), Estado VARCHAR2(255)); -- Tirabassi
 CREATE SEQUENCE Cliente_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 
 CREATE TABLE Instalacao (Codigo INT, CodigoCliente INT, CodigoRegiao INT); -- Lucao
@@ -9,15 +22,13 @@ CREATE SEQUENCE Instalacao_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 CREATE TABLE Regiao (Codigo INT, Nome VARCHAR2(255)); -- Caue
 CREATE SEQUENCE Regiao_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 
-CREATE TABLE ReclamacaoInstalacao (Codigo INT, CodigoCliente INT, CodigoInstalacao INT, CodigoRegiao INT, Status 
-INT, DataCadastro DATE, DescricaoOpcional VARCHAR2(255)); -- GUI
+CREATE TABLE ReclamacaoInstalacao (Codigo INT, CodigoCliente INT, CodigoInstalacao INT, CodigoRegiao INT, Status INT, DataCadastro DATE, DescricaoOpcional VARCHAR2(255)); -- GUI
 CREATE SEQUENCE ReclamacaoInstalacao_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 
 CREATE TABLE Feedback (Codigo INT, CodigoCliente INT, Texto VARCHAR2(255)); -- Rodrigo
 CREATE SEQUENCE Feedback_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 
-CREATE TABLE Chamado (Codigo INT, CodigoRegiao INT, DataHoraCadastro date, DataHoraFinalizado date, 
-DescricaoChamado VARCHAR2(255)); -- Angelo
+CREATE TABLE Chamado (Codigo INT, CodigoRegiao INT, DataHoraCadastro date, DataHoraFinalizado date, DescricaoChamado VARCHAR2(255)); -- Angelo
 CREATE SEQUENCE Chamado_seq INCREMENT BY 1 START WITH 1 NOMAXVALUE;
 
 INSERT INTO Tabela
