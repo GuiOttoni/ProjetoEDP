@@ -1,6 +1,6 @@
 package beans;
 
-public class Cliente {
+public class FeedbackCliente {
 	private int codigo;
 	private int codigoCliente;
 	private String texto;
@@ -39,14 +39,14 @@ public class Cliente {
 		this.texto = texto;
 	}
 	
-	public Cliente(int codigo, int codigoCliente, String texto) {
+	public FeedbackCliente(int codigo, int codigoCliente, String texto) {
 		super();
 		this.codigo = codigo;
 		this.codigoCliente = codigoCliente;
 		this.texto = texto;
 	}
 	
-	public Cliente() {
+	public FeedbackCliente() {
 		super();
 	}
 }

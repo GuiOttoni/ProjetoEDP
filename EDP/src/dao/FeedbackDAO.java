@@ -3,14 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import beans.Cliente;
-import conexao.ConexaoFactory;
+import beans.FeedbackCliente;
+import conexao.ConexaoFactoryFeedback;
 
-public class ClienteDAO {
+public class FeedbackDAO {
 	private Connection con;
 
-	public ClienteDAO() throws Exception {
-		con = new ConexaoFactory().conectar();
+	public FeedbackDAO() throws Exception {
+		con = new ConexaoFactoryFeedback().conectar();
 	}
 	
 	public String fechar() throws Exception{
@@ -18,7 +18,7 @@ public class ClienteDAO {
 		return "Conexão fechada com sucesso.";
 	}
 	
-	public String gravar(Cliente cli) throws Exception{
+	public String gravar(FeedbackCliente cli) throws Exception{
 
 		PreparedStatement estrutura = null;
 		estrutura = con.prepareStatement
@@ -32,4 +32,5 @@ public class ClienteDAO {
 		estrutura.close();
 		return "Obrigado pelo feedback";
 	}
+	
 }
