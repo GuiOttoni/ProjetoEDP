@@ -44,6 +44,16 @@ public class RegiaoBO {
 			return retorno;
 		}
 		
+		
+		public static String alterarPorCodigo(String nome)throws Exception{
+			
+			
+			
+			
+			return nome;			
+		}
+		
+		
 	}
 		
 		
