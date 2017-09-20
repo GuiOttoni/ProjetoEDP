@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Calendar;
 
 import beans.Cliente;
 import conexao.ConexaoFactory;
@@ -28,17 +30,35 @@ public class ClienteDAO {
 		estrutura.setString(6, cli.getCep());
 		estrutura.setString(7, cli.getCidade());
 		estrutura.setString(8, cli.getEstado());
+		return "Inserido com sucesso";
 	
 	}
 	
 	public Cliente getCliente(int n) throws Exception{
 		Cliente cli = new Cliente();
-		PreparedStatement estutura = con.prepareStatement
+		PreparedStatement estrutura = con.prepareStatement
 				("SELECT * FROM CLIENTE WHERE CODIGO = ?");
 		estrutura.setInt(1, n);
-		
-		
-	}
+		ResultSet resultado = estrutura.executeQuery();
+		if(resultado.next()){
+			cli.setCodigo(resultado.getInt("Codigo"));
+			cli.setNome(resultado.getString("Nome"));
+			cli.setSobrenome(resultado.getString("Sobrenome"));
+			Calendar c = Calendar.getInstance();
+			c.setTime(resultado.getDate("DataNascimento"));
+			cli.setDataNascimento(c);
+			cli.setEndereco(resultado.getString("Endereco"));
+			cli.setCep(resultado.getString("Cep"));
+			cli.setCidade(resultado.getString("Cidade"));
+			cli.setEstado(resultado.getString("Estado"));
+		}
+		resultado.close();
+		estrutura.close();
+		return cli;
+		}
+	
+	
+	
 	
 	
 	
