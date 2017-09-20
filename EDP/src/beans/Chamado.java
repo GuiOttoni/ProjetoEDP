@@ -24,6 +24,15 @@ public class Chamado {
 		this.descricaoChamado = descricaoChamado;
 	}
 
+	public Chamado(int codigoRegiao, Calendar dataHoraCadastro, Calendar dataHoraFinalizado,
+			String descricaoChamado) {
+		super();
+		this.codigoRegiao = codigoRegiao;
+		this.dataHoraCadastro = dataHoraCadastro;
+		this.dataHoraFinalizado = dataHoraFinalizado;
+		this.descricaoChamado = descricaoChamado;
+	}
+
 
 
 	public int getCodigo() {

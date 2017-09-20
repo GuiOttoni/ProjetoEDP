@@ -19,10 +19,11 @@ public class ChamadoDAO {
 	}
 
 	public String gravar(Chamado chamado) throws SQLException {
+		
 		String sqlInsert = 
 				"INSERT INTO Chamado (Codigo, CodigoRegiao, DataHoraCadastro, DataHoraFinalizado, DescricaoChamado)" 
 				+ "VALUES "
-				+ "((SELECT NVL(MAX(Codigo), 0) + 1 FROM Chamado), ?, ?, ?, ?);";
+				+ "(Chamado_seq.nextval, ?, ?, ?, ?);";
 		
 		PreparedStatement statement = connection.prepareStatement(sqlInsert);
 		
@@ -37,11 +38,13 @@ public class ChamadoDAO {
 		return "Sucesso!";
 	}
 	
-	public Chamado retornarChamado() throws SQLException {
+	public Chamado retornarChamado(int codigoChamado) throws SQLException {
 		String sqlSelect = 
 				"SELECT * FROM Chamado WHERE Codigo = ?";
 		
 		PreparedStatement statement = connection.prepareStatement(sqlSelect);
+		
+		statement.setInt(1, codigoChamado);
 		
 		ResultSet resultSet = statement.executeQuery();
 		
@@ -66,7 +69,5 @@ public class ChamadoDAO {
 		
 		return chamado;
 	}
-	
-	
 	
 }
