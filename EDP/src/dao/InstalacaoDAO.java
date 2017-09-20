@@ -16,7 +16,7 @@ public class InstalacaoDAO {
 	
 	public void fechar() throws SQLException{
 		con.close();
-	}
+	}	
 	
 	public String cadastrarInstalacao(Instalacao inst) throws SQLException{
 		PreparedStatement ps = null;
@@ -76,5 +76,37 @@ public class InstalacaoDAO {
 			}
 		}
 		return "Não deletado";
+	}
+	
+	public String alterarInstalacao(int idInstalacao, Instalacao inst) throws SQLException{
+		PreparedStatement ps = null;
+		int idx = 0;
+		try{
+			ps = con.prepareStatement("UPDATE INSTALACAO SET CODIGOCLIENTE = ?, CODIGOREGIAO =? "
+					+ "WHERE CODIGO = ?");
+			ps.setInt(++idx, inst.getCodCliente());
+			ps.setInt(++idx, inst.getCodRegiao());
+			ps.setInt(++idx, idInstalacao);
+			ps.execute();
+			ps.close();
+			con.close();
+			return "Alterado!";
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(ps != null){
+				try{
+					ps.close();
+				}catch(Exception e){}
+			}
+			if(con != null){
+				try{
+					con.close();
+				}catch(Exception e){
+					
+				}
+			}
+		}
+		return "Não Alterado";
 	}
 }

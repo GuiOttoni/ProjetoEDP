@@ -1,7 +1,5 @@
 package bo;
 
-import javax.swing.JOptionPane;
-
 import beans.Instalacao;
 import dao.InstalacaoDAO;
 
@@ -29,6 +27,19 @@ public class InstalacaoBO {
 			return dao.deletarInstalacao(idInstalacao);
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static String alterarInstalacao(int idInstalacao, Instalacao inst) throws Exception{
+		try{
+			if(inst.getCodCliente() == 0){
+				return null;
+			}
+			InstalacaoDAO dao = new InstalacaoDAO();
+			return dao.alterarInstalacao(idInstalacao, inst);
+		}catch(Exception e){
+			
 		}
 		return null;
 	}
