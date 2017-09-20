@@ -23,7 +23,7 @@ public class Regiao {
 	public Regiao(int codigo, String nome) {
 		super();
 		setCodigo(codigo);
-		setCodigo(nome);
+		setNome(nome);
 	}
 	public Regiao() {
 		super();

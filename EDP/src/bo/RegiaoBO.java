@@ -9,13 +9,13 @@ public class RegiaoBO {
 		if (reg.getNome().length() > 255){
 			return "Nome grande demais";
 		}
-			
+		
+		if(reg.getCodigo() == 0){
+			return "Código de região Inválida";
+		}
+		
 		RegiaoDAO dao = new RegiaoDAO();
 		
-		if(dao.getNome(reg.getCodigo())> 0){
-			dao.fechar();
-			return "Cliente já existe";
-		}
 		String msgRetorno = dao.gravar(reg);
 		dao.fechar();
 		return msgRetorno;
@@ -27,9 +27,9 @@ public class RegiaoBO {
 			}
 			
 			RegiaoDAO dao = new RegiaoDAO();
-			Regiao reg = dao.getCodigo(codigo);
+			Regiao retorno = dao.consultaPorCodigo(codigo);
 			dao.fechar();
-			return reg;
+			return retorno;
 		}
 		
 		
@@ -48,5 +48,4 @@ public class RegiaoBO {
 		
 		
 	
-	
-}
+

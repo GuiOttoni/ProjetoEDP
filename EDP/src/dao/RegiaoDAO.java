@@ -3,6 +3,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,20 @@ public class RegiaoDAO {
 		estrutura.close();
 		return "Gravado com sucesso";
 	}
-
+	
+	public Regiao consultaPorCodigo(int n) throws Exception{
+		PreparedStatement estrutura = con.prepareStatement("SELECT * FROM Regiao WHERE Codigo = ?");
+		estrutura.setInt(1, n);
+		ResultSet resultado = estrutura.executeQuery();
+		Regiao reg = new Regiao();
+		
+		if(resultado.next()){
+			reg.setNome(resultado.getString("Nome"));
+		}
+		
+		return reg;
+	}
+	
 	public Regiao getCliente(int n) throws Exception{
 		Regiao reg = new Regiao();
 		PreparedStatement estrutura = con.prepareStatement
@@ -40,7 +54,7 @@ public class RegiaoDAO {
 		estrutura.setInt(1, n);
 		ResultSet resultado = estrutura.executeQuery();
 		if(resultado.next()){
-			reg.setNome(resultado.getString("NM_CLIENTE"));
+			reg.setNome(resultado.getString("Nome"));
 		}
 		System.out.println("pegou e " + reg.getNome());
 		resultado.close();
@@ -51,33 +65,24 @@ public class RegiaoDAO {
 	public int delete(int num)throws Exception{
 		PreparedStatement estrutura = 
 				con.prepareStatement
-				("DELETE FROM TB_TAP_CLIENTE WHERE NR_CLIENTE = ?");
+				("DELETE FROM Regiao WHERE Nome = ?");
 		estrutura.setInt(1, num);
 		int i = estrutura.executeUpdate();
 		estrutura.close();
 		return i;
 	}
-	public int uparNivel(int num)throws Exception{
-		PreparedStatement estrutura = 
-				con.prepareStatement
-				("UPDATE TB_TAP_CLIENTE SET QT_ESTRELAS="
-						+ "QT_ESTRELAS+1 WHERE NR_CLIENTE=?");
-		estrutura.setInt(1, num);
-		int x = estrutura.executeUpdate();
-		estrutura.close();
-		return x;
-	}
+	
 	public List<Regiao> listarPorNome(String n)throws Exception{
 		List<Regiao> lista = new ArrayList<Regiao>();
 		Regiao obj = new Regiao();
 		PreparedStatement estrutura = 
 				con.prepareStatement
-				("SELECT * FROM TB_TAP_CLIENTE WHERE NM_CLIENTE LIKE ?");
+				("SELECT * FROM Regiao WHERE Nome LIKE ?");
 		estrutura.setString(1, "%" + n + "%");
 		ResultSet resultado = estrutura.executeQuery();
 		while(resultado.next()){
 			obj = new Regiao();
-			obj.setNome(resultado.getString("NM_CLIENTE"));
+			obj.setNome(resultado.getString("Nome"));
 			lista.add(obj);
 		}
 		resultado.close();
