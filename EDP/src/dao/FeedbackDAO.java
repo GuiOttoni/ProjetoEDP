@@ -23,11 +23,12 @@ public class FeedbackDAO {
 		PreparedStatement estrutura = null;
 		estrutura = con.prepareStatement
 				("INSERT INTO Feedback "
-						+ "(Codigo, CodigoCliente, Texto) VALUES"
-						+ " (?,?,?)");
-		estrutura.setInt(1, cli.getCodigo());
-		estrutura.setInt(2, cli.getCodigoCliente());
-		estrutura.setString(3, cli.getTexto());
+						+ "VALUES (Feedback_seq.nexval,?,?)");
+		//estrutura.setInt(1, cli.getCodigo());
+		//estrutura.setInt(2, cli.getCodigoCliente());
+		//estrutura.setString(3, cli.getTexto());
+		estrutura.setInt(1, cli.getCodigoCliente());
+		estrutura.setString(2, cli.getTexto());
 		estrutura.execute();
 		estrutura.close();
 		return "Obrigado pelo feedback";
