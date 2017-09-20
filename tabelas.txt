@@ -1,0 +1,11 @@
+-- Tabelas
+CREATE TABLE Cliente (Codigo INT, Nome VARCHAR2(40), Sobrenome VARCHAR2(40), DataNascimento DATE,Endereco VARCHAR2(255), Cep VARCHAR2(8), Cidade VARCHAR2(255), Estado VARCHAR2(255)); -- Tirabassi
+CREATE TABLE Instalacao (Codigo INT, CodigoCliente INT, CodigoRegiao INT); -- Lucao
+CREATE TABLE Regiao (Codigo INT, Nome VARCHAR2(255)); -- Caue
+CREATE TABLE ReclamacaoInstalacao (Codigo INT, CodigoCliente INT, CodigoInstalacao INT, CodigoRegiao INT, Status INT, DataCadastro DATE, DescricaoOpcional VARCHAR2(255)); -- GUI
+CREATE TABLE Feedback (Codigo INT, CodigoCliente INT, Texto VARCHAR2(255)); -- Rodrigo
+CREATE TABLE Chamado (Codigo INT, CodigoRegiao INT, DataHoraCadastro date, DataHoraFinalizado date, DescricaoChamado VARCHAR2(255)); -- Angelo
+
+
+
+(SELECT NVL(MAX(Codigo), 0) + 1 FROM Chamado)
