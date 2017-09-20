@@ -25,9 +25,8 @@ public class RegiaoDAO {
 
 		PreparedStatement estrutura = null;
 		estrutura = con.prepareStatement
-				("INSERT INTO TB_TAP_CLIENTE "
-						+ "(NR_CLIENTE, NM_CLIENTE, QT_ESTRELAS) VALUES"
-						+ " (?,?,?)");
+				("INSERT INTO Regiao "
+						+ "(Nome) VALUES"+ " (?)");
 		estrutura.setString(1, reg.getNome());
 		estrutura.execute();
 		estrutura.close();
@@ -37,7 +36,7 @@ public class RegiaoDAO {
 	public Regiao getCliente(int n) throws Exception{
 		Regiao reg = new Regiao();
 		PreparedStatement estrutura = con.prepareStatement
-				("SELECT * FROM TB_TAP_CLIENTE WHERE NR_CLIENTE = ?");
+				("SELECT * FROM Regiao WHERE Codigo = ?");
 		estrutura.setInt(1, n);
 		ResultSet resultado = estrutura.executeQuery();
 		if(resultado.next()){
