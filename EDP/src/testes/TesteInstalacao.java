@@ -1,5 +1,7 @@
 package testes;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import beans.Instalacao;
@@ -15,19 +17,29 @@ public class TesteInstalacao {
 	
 	public static void main(String[] args) {
 		try{
+			/*CADASTRAR*/
 			//Instalacao inst = new Instalacao(paramInt("CodCliente"),paramInt("CodRegiao"));
 			//String retorno = InstalacaoBO.cadastrarInstalacao(inst);
 			
+			/*REMOVER*/
 			//String retorno = InstalacaoBO.removerInstalacao(paramInt("Deletar CodCli:"));
 			
-			Instalacao inst = new Instalacao(paramInt("CodCliente"),paramInt("CodRegiao"));
-			String retorno = InstalacaoBO.alterarInstalacao(paramInt("IdInstalacao"), inst);
+			/*ALTERAR*/
+			/*Instalacao inst = new Instalacao(paramInt("CodCliente"),paramInt("CodRegiao"));
+			String retorno = InstalacaoBO.alterarInstalacao(paramInt("IdInstalacao"), inst);*/
 			
-			if(retorno == null){
-				System.out.println("Não cadastrado!");
+			/*LISTAR*/
+			List<Instalacao> listaInstalacao = InstalacaoBO.getInstPorRegiao(paramInt("CodRegiao"));
+			if(listaInstalacao == null){
+				System.out.println("Não há registros para retornar.");
 			}else{
-				System.out.println(retorno);
+				for(Instalacao inst : listaInstalacao){
+					System.out.println("Código Instalacao: " + inst.getCodInstalacao());
+					System.out.println("Código Cliente: " + inst.getCodCliente());
+					System.out.println("Código Região: " + inst.getCodRegiao());
+				}
 			}
+		
 		}catch(Exception e){
 			e.printStackTrace();
 		}

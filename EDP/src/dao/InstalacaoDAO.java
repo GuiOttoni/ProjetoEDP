@@ -2,7 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 import beans.Instalacao;
 import conexao.ConexaoFactory;
@@ -108,5 +113,49 @@ public class InstalacaoDAO {
 			}
 		}
 		return "Não Alterado";
+	}
+	
+	public List<Instalacao> getInstPorRegiao(int idRegiao) throws SQLException{
+		List<Instalacao> lista = new ArrayList<Instalacao>();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try{
+			ps = con.prepareStatement(" SELECT * FROM INSTALACAO WHERE CODIGOREGIAO = ?");
+			ps.setInt(1, idRegiao);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				Instalacao instalacao = new Instalacao();
+				instalacao.setCodInstalacao(rs.getInt("CODIGO"));
+				instalacao.setCodCliente(rs.getInt("CODIGOCLIENTE"));
+				instalacao.setCodRegiao(rs.getInt("CODIGOREGIAO"));
+				lista.add(instalacao);
+			}
+			rs.close();
+			ps.close();
+			con.close();
+			return lista;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try{
+					rs.close();
+				}catch(Exception e){}
+			}			
+			if(ps != null){
+				try{
+					ps.close();
+				}catch(Exception e){}
+			}
+			if(con != null){
+				try{
+					con.close();
+				}catch(Exception e){
+					
+				}
+			}
+		}
+		return null;
 	}
 }
