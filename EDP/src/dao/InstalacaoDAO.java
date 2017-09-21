@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-
 import beans.Instalacao;
 import conexao.ConexaoFactory;
 

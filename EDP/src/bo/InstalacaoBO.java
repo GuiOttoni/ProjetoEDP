@@ -41,7 +41,7 @@ public class InstalacaoBO {
 			InstalacaoDAO dao = new InstalacaoDAO();
 			return dao.alterarInstalacao(idInstalacao, inst);
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		return null;
 	}
