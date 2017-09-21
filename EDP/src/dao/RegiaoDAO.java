@@ -1,4 +1,4 @@
- package dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,6 +90,19 @@ public class RegiaoDAO {
 		return lista;
 	}
 	
+
+    public int atualizar(int cod) throws Exception{
+         PreparedStatement stmt = con.prepareStatement ("UPDATE Regiao WHERE Codigo = ?");
+         int retorno = stmt.executeUpdate();
+         stmt.close();
+         return retorno;
+         
+    }
+
+
+
+
+
 	
 	
 }

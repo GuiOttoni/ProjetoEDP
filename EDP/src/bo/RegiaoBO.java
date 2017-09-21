@@ -48,12 +48,10 @@ public class RegiaoBO {
 		}
 		
 		
-		public static String alterarPorCodigo(String nome)throws Exception{
+		public static int alterarPorCodigo(int cod)throws Exception{
 			
-			
-			
-			
-			return nome;			
+			return new RegiaoDAO().atualizar(cod);
+            
 		}
 		
 		
