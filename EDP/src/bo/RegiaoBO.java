@@ -1,9 +1,8 @@
 package bo;
 
-import java.sql.PreparedStatement;
-
+//import java.sql.PreparedStatement;
 import beans.Regiao;
-import conexao.ConexaoFactory;
+//import conexao.ConexaoFactory;
 import dao.RegiaoDAO;
 
 public class RegiaoBO {

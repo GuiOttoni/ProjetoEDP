@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class RegiaoDAO {
 		PreparedStatement estrutura = null;
 		estrutura = con.prepareStatement
 				("INSERT INTO Regiao "
-						+ "(Nome) VALUES"+ " (?)");
+						+ "(Nome) VALUES (Regiao_seq.nextval,Campo1,Campo2,...);"+ " (?)");
 		estrutura.setString(1, reg.getNome());
 		estrutura.execute();
 		estrutura.close();
