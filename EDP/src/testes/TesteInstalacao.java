@@ -42,7 +42,7 @@ public class TesteInstalacao {
 					    		   		  paramInt("Digite o código da região"));
 				    try{
 				    	JOptionPane.showMessageDialog(null, 
-									InstalacaoBO.alterarInstalacao(paramInt("Digite o código da instalacao"), inst));
+									InstalacaoBO.alterarInstalacao(paramInt("Digite o código da instalacao a ser alterada"), inst));
 				    }catch(Exception e){
 				    	e.printStackTrace();
 				    }
