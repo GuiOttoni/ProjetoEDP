@@ -1,5 +1,6 @@
 package beans;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Chamado {
@@ -74,7 +75,17 @@ public class Chamado {
 	public void setDescricaoChamado(String descricaoChamado) {
 		this.descricaoChamado = descricaoChamado;
 	}
-    
-	
-	
+
+
+	@Override
+	public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+        return "Chamado\n" +
+				"codigo=" + codigo +
+				"\n codigoRegiao=" + codigoRegiao +
+				"\n dataHoraCadastro=" + format.format(dataHoraCadastro.getTime()) +
+				"\n dataHoraFinalizado=" + format.format(dataHoraFinalizado.getTime()) +
+				"\n descricaoChamado='" + descricaoChamado + '\'';
+	}
 }

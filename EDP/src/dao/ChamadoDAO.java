@@ -20,17 +20,14 @@ public class ChamadoDAO {
 
 	public String gravar(Chamado chamado) throws SQLException {
 		
-		String sqlInsert = 
-				"INSERT INTO Chamado (Codigo, CodigoRegiao, DataHoraCadastro, DataHoraFinalizado, DescricaoChamado)" 
-				+ "VALUES "
-				+ "(Chamado_seq.nextval, ?, ?, ?, ?);";
+		String sqlInsert = "INSERT INTO Chamado (Codigo, CodigoRegiao, DataHoraCadastro, DataHoraFinalizado, DescricaoChamado) VALUES (Chamado_seq.nextval, ?, ?, ?, ?)";
 		
 		PreparedStatement statement = connection.prepareStatement(sqlInsert);
-		
+
 		statement.setInt(1, chamado.getCodigoRegiao());
 		statement.setDate(2, new Date(chamado.getDataHoraCadastro().getTimeInMillis()));
 		statement.setDate(3, new Date(chamado.getDataHoraFinalizado().getTimeInMillis()));
-		statement.setString(3, chamado.getDescricaoChamado());
+		statement.setString(4, chamado.getDescricaoChamado());
 		
 		statement.execute();
 		statement.close();
@@ -38,9 +35,9 @@ public class ChamadoDAO {
 		return "Sucesso!";
 	}
 	
-	public Chamado retornarChamado(int codigoChamado) throws SQLException {
-		String sqlSelect = 
-				"SELECT * FROM Chamado WHERE Codigo = ?";
+	public Chamado retornarChamado(int codigoChamado) throws Exception {
+
+		String sqlSelect = "SELECT * FROM Chamado WHERE Codigo = ?";
 		
 		PreparedStatement statement = connection.prepareStatement(sqlSelect);
 		
