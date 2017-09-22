@@ -78,6 +78,10 @@ public class ReclamacaoInstalacao
 		setCodigo(_codigo);
 		setCodigoCliente(_codigoCliente);
 		setCodigoInstalacao(_codigoInstalacao);
+		setCodigoRegiao(_codigoRegiao);
+		setStatus(_status);
+		setDataCadastro(_dataCadastro);
+		setDescricaoOpcional(_descricaoOpcional);
 	}
 	
 	public ReclamacaoInstalacao() 
