@@ -15,33 +15,59 @@ public class TesteInstalacao {
 		return JOptionPane.showInputDialog(txt);
 	}
 	
-	public static void main(String[] args) {
-		try{
-			/*CADASTRAR*/
-			//Instalacao inst = new Instalacao(paramInt("CodCliente"),paramInt("CodRegiao"));
-			//String retorno = InstalacaoBO.cadastrarInstalacao(inst);
-			
-			/*REMOVER*/
-			//String retorno = InstalacaoBO.removerInstalacao(paramInt("Deletar CodCli:"));
-			
-			/*ALTERAR*/
-			/*Instalacao inst = new Instalacao(paramInt("CodCliente"),paramInt("CodRegiao"));
-			String retorno = InstalacaoBO.alterarInstalacao(paramInt("IdInstalacao"), inst);*/
-			
-			/*LISTAR*/
-			List<Instalacao> listaInstalacao = InstalacaoBO.getInstPorRegiao(paramInt("CodRegiao"));
-			if(listaInstalacao == null){
-				System.out.println("Não há registros para retornar.");
-			}else{
-				for(Instalacao inst : listaInstalacao){
-					System.out.println("Código Instalacao: " + inst.getCodInstalacao());
-					System.out.println("Código Cliente: " + inst.getCodCliente());
-					System.out.println("Código Região: " + inst.getCodRegiao());
-				}
-			}
+	public static void main(String[] args) throws Exception {
 		
-		}catch(Exception e){
-			e.printStackTrace();
+		String opcao = paramString("Escolha uma opção entre Cadastrar, Remover, Alterar, Listar");
+		Instalacao inst;
+		switch(opcao){
+			case "Cadastrar":
+				    inst = new Instalacao(paramInt("Digite o código do cliente"),
+					        			  paramInt("Digite o código da região"));
+					try{
+						JOptionPane.showMessageDialog(null, InstalacaoBO.cadastrarInstalacao(inst));
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				break;
+			case "Remover":
+					try{
+						JOptionPane.showMessageDialog(null, 
+									InstalacaoBO.removerInst(paramInt("Digite o código do cliente")));
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				break;
+			case "Alterar":
+				    inst = new Instalacao(paramInt("Digite o código do cliente"),
+					    		   		  paramInt("Digite o código da região"));
+				    try{
+				    	JOptionPane.showMessageDialog(null, 
+									InstalacaoBO.alterarInstalacao(paramInt("Digite o código da instalacao"), inst));
+				    }catch(Exception e){
+				    	e.printStackTrace();
+				    }
+				break;
+			case "Listar":
+					try{
+						List<Instalacao> listaInstalacao = InstalacaoBO.getInstPorRegiao(
+														   paramInt("Digite o código da região"));
+						
+					if(listaInstalacao == null)
+						System.out.println("Erro ao retornar listagem.");
+					else{
+							for(Instalacao instalacao : listaInstalacao){
+								System.out.print("Código Instalação: " + instalacao.getCodInstalacao()+", ");
+								System.out.print("Código Cliente: " + instalacao.getCodCliente()+", ");
+								System.out.print("Código Região: " + instalacao.getCodRegiao()+ System.lineSeparator());
+							}
+						}
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				break;
+			default:
+					JOptionPane.showMessageDialog(null, "Digite um parâmetro correto!");
+				break;
 		}
 	}
 }

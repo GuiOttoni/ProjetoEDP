@@ -20,7 +20,7 @@ public class InstalacaoBO {
 		return null;
 	}
 	
-	public static String removerInstalacao(int idInstalacao) throws Exception{
+	public static String removerInst(int idInstalacao) throws Exception{
 		try{
 			if(idInstalacao == 0)
 				return null;
