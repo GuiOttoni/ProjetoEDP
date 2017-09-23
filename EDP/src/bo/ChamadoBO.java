@@ -42,4 +42,20 @@ public class ChamadoBO {
         return c;
     }
 
+    public static void excluirChamado(Chamado c) throws Exception {
+        // Certifica-se de que o chamado não seja nulo
+        if(c == null)
+            return;
+
+        new ChamadoDAO().apagarChamado(c);
+    }
+
+    public static Chamado buscarUltimoChamado() throws Exception {
+        Chamado chamado = new ChamadoDAO().retornarUltimoChamado();
+
+        if (chamado == null)
+            throw new Exception("Chamado não encontrado");
+
+        return chamado;
+    }
 }
