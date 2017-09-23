@@ -3,7 +3,7 @@ package conexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConexaoFactory {
+public class ConexaoFactoryFeedback {
 
 	public static Connection retornarConexao() throws Exception{
 		return DriverManager.getConnection
