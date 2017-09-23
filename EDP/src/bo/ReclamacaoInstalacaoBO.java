@@ -10,39 +10,39 @@ public class ReclamacaoInstalacaoBO
          dao = new ReclamacaoInstalacaoDAO();
     }
 
-    public static String cadastrarRecI(Instalacao inst) throws Exception
+    public static String cadastrarRecI(ReclamacaoInstalacao rec) throws Exception
     {
         try{
             if(inst.getCodCliente() == 0)
                 return null;
 
-            return dao.cadastrarInstalacao(inst);
+            return dao.cadastrarReclamacao(rec);
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
 
-    public static String removerRecI(int idInstalacao) throws Exception
+    public static String removerRecI(int idReclamacao) throws Exception
     {
         try{
-            if(idInstalacao == 0)
+            if(idReclamacao == 0)
                 return null;
 
-            return dao.deletarInstalacao(idInstalacao);
+            return dao.deletarReclamacao(idReclamacao);
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
 
-    public static String AlterarRecI(int idInstalacao, Instalacao inst) throws Exception
+    public static String AlterarRecI(int idReclamacao, ReclamacaoInstalacao rec) throws Exception
     {
         try{
             if(inst.getCodCliente() == 0)
                 return null;
 
-            return dao.alterarInstalacao(idInstalacao, inst);
+            return dao.alterarReclamacao(idReclamacao, rec);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -55,33 +55,33 @@ public class ReclamacaoInstalacaoBO
             if(idRegiao == 0)
                 return null;
 
-            return dao.getInstPorRegiao(idRegiao);
+            return dao.getRecPorRegiao(idRegiao);
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
 
-    public static List<ReclamacaoInstalacao> getRecInstPorCliente(int idRegiao) throws Exception
+    public static List<ReclamacaoInstalacao> getRecInstPorCliente(int idCliente) throws Exception
     {
         try{
-            if(idRegiao == 0)
+            if(idCliente == 0)
                 return null;
 
-            return dao.getInstPorRegiao(idRegiao);
+            return dao.getRecPorCliente(idCliente);
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
 
-    public static List<ReclamacaoInstalacao> getRecInstPorInstalacao(int idRegiao) throws Exception
+    public static List<ReclamacaoInstalacao> getRecInstPorInstalacao(int idInstalacao) throws Exception
     {
         try{
-            if(idRegiao == 0)
+            if(idInstalacao == 0)
                 return null;
 
-            return dao.getInstPorRegiao(idRegiao);
+            return dao.getRecPorInstalacao(idInstalacao);
         }catch(Exception e){
             e.printStackTrace();
         }
