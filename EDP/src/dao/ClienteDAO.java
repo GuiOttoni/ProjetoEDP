@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import beans.Cliente;
 import conexao.ConexaoFactory;
@@ -20,7 +22,7 @@ public class ClienteDAO {
 		PreparedStatement estrutura = null;
 		estrutura = con.prepareStatement("INSERT INTO Cliente"
 											+ "(Codigo, Nome, Sobrenome, DataNascimento, Endereco, Cep, Cidade, Estado) VALUES"
-											+ "((SELECT NVL(MAX(Codigo), 0) + 1 FROM Chamado),?,?,?,?,?,?,?)");	
+											+ "(Cliente_seq.nextval,?,?,?,?,?,?,?)");	
 		
 		estrutura.setInt(1, cli.getCodigo());
 		estrutura.setString(2, cli.getNome());
@@ -55,13 +57,38 @@ public class ClienteDAO {
 		resultado.close();
 		estrutura.close();
 		return cli;
-		}
+	}
 	
 	
+	public int delete(int num) throws Exception{
+		PreparedStatement estrutura = con.prepareStatement
+				("DELETE FROM CLIENTE WHERE CODIGO = ?");
+		estrutura.setInt(1, num);
+		int i = estrutura.executeUpdate();
+		estrutura.close();
+		return i;
+	}
 	
-	
-	
-	
-	
+	public String uparNivel(Cliente cli)throws Exception{
+		PreparedStatement estrutura = con.prepareStatement
+				("UPDATE CLIENTE SET"
+						+ "Nome = ?,"
+						+ "Sobrenome = ?,"
+						+ "DataNascimento = ?,"
+						+ "Endereco = ?,"
+						+ "Cep = ?,"
+						+ "Cidade = ?,"
+						+ "Estado = ? WHERE CODIGO =?");
+
+		estrutura.setString(1, cli.getNome());
+		estrutura.setString(2, cli.getSobrenome());
+		estrutura.setDate(3, new Date(cli.getDataNascimento().getTimeInMillis()));
+		estrutura.setString(4, cli.getEndereco());
+		estrutura.setString(5, cli.getCep());
+		estrutura.setString(6, cli.getCidade());
+		estrutura.setString(7, cli.getEstado());
+		return "Atualizado com sucesso";			
+	}
+		
 
 }
