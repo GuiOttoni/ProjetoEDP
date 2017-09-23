@@ -29,15 +29,31 @@ public class TestChamado {
 					}
 					break;
 				case 3:
+					try {
+						Chamado c = ChamadoBO.buscarChamado(perguntarCodigoChamado());
+
+						ChamadoBO.excluirChamado(c);
+
+						// Se n√£o lan√ßou excess√£o, excluiu com sucesso!
+						JOptionPane.showMessageDialog(null, "Chamado exclu√≠do com sucesso!", "Cadastro,", JOptionPane.INFORMATION_MESSAGE, null);
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro,", JOptionPane.ERROR_MESSAGE, null);
+					}
 					break;
 				case 4:
+					try {
+						Chamado c = ChamadoBO.buscarUltimoChamado();
+						JOptionPane.showMessageDialog(null, c.toString(), "Cadastro,", JOptionPane.INFORMATION_MESSAGE, null);
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro,", JOptionPane.ERROR_MESSAGE, null);
+					}
 					break;
 			}
 		} while (opt != 5);
 	}
 
 	private static int perguntarCodigoChamado() {
-		return Integer.parseInt(JOptionPane.showInputDialog("Digite o cÛdigo do chamado para buscar!"));
+		return Integer.parseInt(JOptionPane.showInputDialog("Digite o c√≥digo do chamado para buscar!"));
 	}
 
 	private static Chamado retornarNovoChamado() {
@@ -45,13 +61,13 @@ public class TestChamado {
             return
                     new Chamado
                             (
-                                    Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da regi„o: ")),
+                                    Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo da regiÔøΩo: ")),
                                     new GregorianCalendar(),
                                     new GregorianCalendar(),
-                                    JOptionPane.showInputDialog("Digite a descriÁ„o do chamado: ")
+                                    JOptionPane.showInputDialog("Digite a descri√ß√£o do chamado: ")
                             );
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Dados para cadastro inv·lidos", "Cadastro,", JOptionPane.ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Dados para cadastro inv√°lidos", "Cadastro,", JOptionPane.ERROR_MESSAGE, null);
             return null;
         }
 	}

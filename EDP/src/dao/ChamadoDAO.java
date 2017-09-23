@@ -19,7 +19,6 @@ public class ChamadoDAO {
 	}
 
 	public String gravar(Chamado chamado) throws SQLException {
-		
 		String sqlInsert = "INSERT INTO Chamado (Codigo, CodigoRegiao, DataHoraCadastro, DataHoraFinalizado, DescricaoChamado) VALUES (Chamado_seq.nextval, ?, ?, ?, ?)";
 		
 		PreparedStatement statement = connection.prepareStatement(sqlInsert);
@@ -66,5 +65,44 @@ public class ChamadoDAO {
 		
 		return chamado;
 	}
-	
+
+	public void apagarChamado(Chamado chamado) throws SQLException {
+		String sqlDelete = "DELETE FROM Chamado WHERE Codigo = ?";
+
+		PreparedStatement statement = connection.prepareStatement(sqlDelete);
+
+		statement.setInt(1, chamado.getCodigo());
+
+		statement.execute();
+		statement.close();
+	}
+
+	public Chamado retornarUltimoChamado() throws SQLException {
+		String sqlSelect = "SELECT * FROM Chamado WHERE Codigo = (SELECT MAX(Codigo)  FROM Chamado)";
+
+		PreparedStatement statement = connection.prepareStatement(sqlSelect);
+
+		ResultSet resultSet = statement.executeQuery();
+
+		Chamado chamado = null;
+
+		if(resultSet.next()) {
+			int codigo = resultSet.getInt(1);
+			int codigoRegiao = resultSet.getInt(2);
+
+			Calendar dataCadastro = new GregorianCalendar();
+			dataCadastro.setTime(resultSet.getDate(3));
+
+			Calendar dataFinalizado = new GregorianCalendar();
+			dataCadastro.setTime(resultSet.getDate(4));
+
+			String descricaoChamado = resultSet.getString(5);
+
+			chamado = new Chamado(codigo, codigoRegiao, dataCadastro, dataFinalizado, descricaoChamado);
+		}
+
+		statement.close();
+
+		return chamado;
+	}
 }
