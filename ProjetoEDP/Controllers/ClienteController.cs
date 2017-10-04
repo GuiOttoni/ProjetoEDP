@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using EDP.Api.Core.Configuration;
+using Edp.Api.Command.Processors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +13,15 @@ namespace ProjetoEDP.Controllers
     [Route("api/[controller]")]
     public class ClienteController : Controller
     {
+
+        private readonly MyOptions _options;
+        private ClienteProcessor Processor;
+        public ClienteController(Microsoft.Extensions.Options.IOptions<MyOptions> optionsAccessor)
+        {
+            _options = optionsAccessor.Value;
+            Processor = new ClienteProcessor(_options.ConnectionString, _options);
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()

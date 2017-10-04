@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Edp.Api.Command\Edp.Api.Command.csproj" />
     <ProjectReference Include="..\EDP.Api.Core\EDP.Api.Core.csproj" />
   </ItemGroup>
 
