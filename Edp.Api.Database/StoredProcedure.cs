@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Edp.Api.Database
 {
-    class StoredProcedure
+    public class StoredProcedure
     {
     }
 }

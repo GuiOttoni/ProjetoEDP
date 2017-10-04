@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Edp.Api.Database
 {
-    class DatabaseControl
+    public class DatabaseControl
     {
+        private String connectionString = "";
+
+        public DatabaseControl(string connection)
+        {
+            this.connectionString = connection;
+        }
     }
 }

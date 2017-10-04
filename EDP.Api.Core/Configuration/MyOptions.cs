@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EDP.Api.Core.Configuration
 {
-    class MyOptions
+    public class MyOptions
     {
     }
 }
