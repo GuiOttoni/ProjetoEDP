@@ -6,5 +6,6 @@ namespace EDP.Api.Core.Configuration
 {
     public class MyOptions
     {
+        public string ConnectionString { get; set; } = "";
     }
 }
