@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EDP.Api.Core.Configuration;
 using Edp.Api.Command.Processors;
+using EDP.Api.Core.Entities.Views;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,43 +14,39 @@ namespace ProjetoEDP.Controllers
     [Route("api/[controller]")]
     public class FeedbackController : Controller
     {
+        #region Var
+        /// <summary>
+        /// Variavel para acessar opções do appsettings.json
+        /// </summary>
         private readonly MyOptions _options;
-        private FeedbackProcessor Processor;
+
+        /// <summary>
+        /// variavel do processor do controller
+        /// </summary>
+        private FeedbackProcessor processor;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsAccessor"></param>
         public FeedbackController(Microsoft.Extensions.Options.IOptions<MyOptions> optionsAccessor)
         {
             _options = optionsAccessor.Value;
             Processor = new FeedbackProcessor(_options.ConnectionString, _options);
         }
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        #endregion
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        #region Public Methods
 
-        // POST api/values
+        [Route("api/feedback/new")]
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> PostAsync([FromBody]FeedbackViewModel viewModel)
         {
+            return Json(await processor.PostFeedbackAsync(viewModel));
         }
+        #endregion
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

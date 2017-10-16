@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\Enums\" />
-    <Folder Include="Entities\Models\" />
-    <Folder Include="Entities\Views\" />
   </ItemGroup>
 
 </Project>

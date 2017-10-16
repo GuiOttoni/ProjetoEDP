@@ -5,51 +5,51 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EDP.Api.Core.Configuration;
 using Edp.Api.Command.Processors;
+using EDP.Api.Core.Entities.Views;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProjetoEDP.Controllers
 {
-    [Route("api/[controller]")]
     public class ReclamacaoInstalacaoController : Controller
     {
+        #region Var
         private readonly MyOptions _options;
-        private ReclamacaoInstalacaoProcessor Processor;
+        private ReclamacaoInstalacaoProcessor processor;
+        #endregion
+
+        #region Constructor
         public ReclamacaoInstalacaoController(Microsoft.Extensions.Options.IOptions<MyOptions> optionsAccessor)
         {
             _options = optionsAccessor.Value;
             Processor = new ReclamacaoInstalacaoProcessor(_options.ConnectionString, _options);
         }
-        // GET: api/values
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [Route("api/reclamacao/get")]
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAsync([FromBody]ReclamacaoInstalacaoViewModel viewModel)
         {
-            return new string[] { "value1", "value2" };
+            return Json(await processor.GetReclamacaoAsync(viewModel));
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [Route("api/reclamacao/post")]
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> PostAsync([FromBody]ReclamacaoInstalacaoViewModel viewModel)
         {
+            return Json(await processor.PostReclamacaoAsync(viewModel));
         }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        #endregion
     }
 }
