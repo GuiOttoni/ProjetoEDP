@@ -33,7 +33,7 @@ namespace Edp.Api.Command.Processors
             }
         }
 
-        public async System.Threading.Tasks.Task<object> GetReclamacaoAsync(ReclamacaoInstalacaoViewModel viewModel)
+        public async System.Threading.Tasks.Task<object> GetReclamacaoAsync()
         {
             try
             {

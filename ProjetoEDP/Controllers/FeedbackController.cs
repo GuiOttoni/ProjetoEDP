@@ -11,7 +11,6 @@ using EDP.Api.Core.Entities.Views;
 
 namespace ProjetoEDP.Controllers
 {
-    [Route("api/[controller]")]
     public class FeedbackController : Controller
     {
         #region Var

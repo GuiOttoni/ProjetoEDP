@@ -9,7 +9,7 @@ namespace Edp.Api.Database
         /// <summary>
         /// 
         /// </summary>
-        public static readonly String InsertReclamacaoInstalacao = "";
+        public static readonly String InsertReclamacaoInstalacao = "SPINSERIRRECLAMACAOINSTALACAO";
 
         /// <summary>
         /// 
@@ -24,6 +24,26 @@ namespace Edp.Api.Database
         /// <summary>
         /// 
         /// </summary>
-        public static readonly String GetRegiao = "";
+        public static readonly String GetRegiao = "SPRETORNAREGIOES";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly String InsertChamado = "SPINSERIRCHAMADO";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly String InsertCliente = "SPINSERIRCLIENTE";
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly String InsertInstalacao = "SPINSERIRINSTALACAOCLIENTE";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly String InsertRegiao = "SPINSERIRREGIAO";
     }
 }

@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Edp.Api.Command.Processors;
 using EDP.Api.Core.Configuration;
+using Edp.Api.Command.Processors;
 using EDP.Api.Core.Entities.Views;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProjetoEDP.Controllers
 {
-    public class RegiaoController : Controller
+    public class ClienteController : Controller
     {
         #region Var
         /// <summary>
@@ -22,7 +22,7 @@ namespace ProjetoEDP.Controllers
         /// <summary>
         /// variavel do processor do controller
         /// </summary>
-        private RegiaoProcessor processor;
+        private ClienteProcessor processor;
         #endregion
 
         #region Constructor
@@ -30,32 +30,22 @@ namespace ProjetoEDP.Controllers
         /// 
         /// </summary>
         /// <param name="optionsAccessor"></param>
-        public RegiaoController(Microsoft.Extensions.Options.IOptions<MyOptions> optionsAccessor)
+        public ClienteController(Microsoft.Extensions.Options.IOptions<MyOptions> optionsAccessor)
         {
             _options = optionsAccessor.Value;
-            Processor = new RegiaoProcessor(_options.ConnectionString, _options);
+            Processor = new ClienteProcessor(_options.ConnectionString, _options);
         }
         #endregion
 
         #region Public Methods
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/regiao/get/{id}")]
-        public async Task<IActionResult> GetAsync(int id)
-        {
-            return Json(await processor.GetRegiaoAsync(id));
-        }
 
+        [Route("api/cliente/new")]
         [HttpPost]
-        [Route("api/regiao/post")]
-        public async Task<IActionResult> GetAsync([FromBody]RegiaoViewModel viewModel)
+        public async Task<IActionResult> PostAsync([FromBody]ClienteViewModel viewModel)
         {
-            return Json(await processor.PostRegiaoAsync(viewModel));
+            return Json(await processor.PostClienteAsync(viewModel));
         }
         #endregion
+
     }
 }
