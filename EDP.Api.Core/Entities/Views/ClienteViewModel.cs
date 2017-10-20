@@ -6,25 +6,40 @@ namespace EDP.Api.Core.Entities.Views
 {
     public class ClienteViewModel
     {
-        //V_NOME
+
+        /// <summary>
+        /// V_NOME
+        /// </summary>
         public string Nome {get;set;}
 
-    	//V_SOBRENOME
+        /// <summary>
+        /// V_SOBRENOME
+        /// </summary>
         public string Sobrenome {get;set;}
 
-    	//V_DATANASCIMENTO      
+        /// <summary>
+        /// V_DATANASCIMENTO
+        /// </summary>
         public DateTime DataNascimento {get;set;}
 
-    	//V_ENDERECO           
+        /// <summary>
+        /// V_ENDERECO
+        /// </summary>       
         public string Endereco {get;set;}
 
-    	//V_CEP                   
+        /// <summary>
+        /// V_CEP
+        /// </summary>              
         public string CEP {get;set;}
 
-    	//V_CIDADE
+        /// <summary>
+        /// V_CIDADE
+        /// </summary>
         public string Cidade {get;set;}        
                 
-    	//V_ESTADO    
+        /// <summary>
+        /// V_ESTADO
+        /// </summary> 
         public string Estado {get;set;}
     }
 }

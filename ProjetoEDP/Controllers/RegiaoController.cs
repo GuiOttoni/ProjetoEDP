@@ -44,10 +44,10 @@ namespace ProjetoEDP.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/regiao/get/{id}")]
-        public async Task<IActionResult> GetAsync(int id)
+        [Route("api/regiao/get")]
+        public async Task<IActionResult> GetAsync()
         {
-            return Json(await processor.GetRegiaoAsync(id));
+            return Json(await processor.GetRegiaoAsync());
         }
 
         [HttpPost]

@@ -6,22 +6,34 @@ namespace EDP.Api.Core.Entities.Views
 {
     public class ReclamacaoInstalacaoViewModel
     {
-        //V_CODIGOCLIENTE
+        ///<summary>
+        /// V_CODIGOCLIENTE
+        ///</summary>
         public int CodigoCliente{get;set;}
         
-	    //V_CODIGOINSTALACAO
+        ///<summary>
+        /// V_CODIGOINSTALACAO
+        ///</summary>
         public int CodigoInstalacao{get;set;}
 
-	    //V_CODIGOREGIAO
+        ///<summary>
+        /// V_CODIGOREGIAO
+        ///</summary>
         public int CodigoRegiao{get;set;}
 
-	    //V_STATUS
+        ///<summary>
+        /// V_STATUS
+        ///</summary>
         public string Status {get;set;}
 
-	    //V_DATACADASTRO
+        ///<summary>
+        /// V_DATACADASTRO
+        ///</summary>
         public DateTime DataCadastro {get;set;}
 
-	    //V_DESCRICAOOPCIONAL
+        ///<summary>
+        /// V_DESCRICAOOPCIONAL
+        ///</summary>
         public string DescricaoOpcional {get;set;}
     }
 }

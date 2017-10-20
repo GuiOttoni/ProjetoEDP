@@ -14,8 +14,8 @@ namespace ProjetoEDP.Controllers
     public class ReclamacaoInstalacaoController : Controller
     {
         #region Var
-        private readonly MyOptions _options;
-        private ReclamacaoInstalacaoProcessor processor;
+            private readonly MyOptions _options;
+            private ReclamacaoInstalacaoProcessor processor;
         #endregion
 
         #region Constructor
@@ -34,9 +34,9 @@ namespace ProjetoEDP.Controllers
         /// <returns></returns>
         [Route("api/reclamacao/get")]
         [HttpGet]
-        public async Task<IActionResult> GetAsync([FromBody]ReclamacaoInstalacaoViewModel viewModel)
+        public async Task<IActionResult> GetAsync()
         {
-            return Json(await processor.GetReclamacaoAsync(viewModel));
+            return Json(await processor.GetReclamacaoAsync());
         }
 
         /// <summary>

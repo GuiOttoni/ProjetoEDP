@@ -19,10 +19,19 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Corrigir para realmente funcionar e inserir no banco
+                OracleCommand orcCommand = new OracleCommand();
+
+                orcCommand.Parameters.add(new OracleParameter("V_CEP", viewModel.CEP));
+                orcCommand.Parameters.add(new OracleParameter("V_CIDADE", viewModel.Cidade));
+                orcCommand.Parameters.add(new OracleParameter("V_DATANASCIMENTO", viewModel.DataNascimento));
+                orcCommand.Parameters.add(new OracleParameter("V_ENDERECO", viewModel.Endereco));
+                orcCommand.Parameters.add(new OracleParameter("V_ESTADO", viewModel.Estado));
+                orcCommand.Parameters.add(new OracleParameter("V_NOME", viewModel.Nome));
+                orcCommand.Parameters.add(new OracleParameter("V_SOBRENOME", viewModel.Sobrenome));
+
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertCliente,
-                    new OracleCommand());
+                    orcCommand);
                 return result;
             }
             catch (Exception x)

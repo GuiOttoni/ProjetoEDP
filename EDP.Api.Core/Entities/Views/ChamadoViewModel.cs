@@ -6,13 +6,19 @@ namespace EDP.Api.Core.Entities.Views
 {
     public class ChamadoViewModel
     {
-        //V_CODIGO_REGIAO
+        ///<summary>
+        ///V_CODIGO_REGIAO
+        ///</summary>
         public int CodigoRegiao {get;set;}
 
-	    //V_CODIGO_CLIENTE
+        ///<summary>
+        ///V_CODIGO_CLIENTE
+        ///</summary>
         public int CodigoCliente {get;set;}
 
-	    //V_DESCRICAO
+        ///<summary>
+        ///V_DESCRICAO
+        ///</summary>
         public string Descricao {get;set;}
 
     }

@@ -19,7 +19,7 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Corrigir para realmente funcionar e inserir no banco
+                //TODO: Criar proc 
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertFeedback,
                     new OracleCommand());

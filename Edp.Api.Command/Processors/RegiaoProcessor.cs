@@ -15,7 +15,7 @@ namespace Edp.Api.Command.Processors
         {
         }
 
-        public async System.Threading.Tasks.Task<object> GetRegiaoAsync(int id)
+        public async System.Threading.Tasks.Task<object> GetRegiaoAsync()
         {
             try
             {
@@ -35,10 +35,13 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Corrigir para realmente funcionar e inserir no banco
+                OracleCommand orcCommand = new OracleCommand();
+                
+                orcCommand.Parameters.add(new OracleParameter("V_NOME", viewModel.Nome));   
+
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertRegiao,
-                    new OracleCommand());
+                    orcCommand);
                 return result;
             }
             catch (Exception x)

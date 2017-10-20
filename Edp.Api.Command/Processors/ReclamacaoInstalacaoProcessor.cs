@@ -20,10 +20,18 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Conectar com o banco e fazer o insert
+                OracleCommand orcCommand = new OracleCommand();
+
+                orcCommand.Parameters.add(new OracleParameter("V_CODIGOCLIENTE", viewModel.CodigoCliente));
+                orcCommand.Parameters.add(new OracleParameter("V_CODIGOINSTALACAO", viewModel.CodigoInstalacao));
+                orcCommand.Parameters.add(new OracleParameter("V_CODIGOREGIAO", viewModel.CodigoRegiao));
+                orcCommand.Parameters.add(new OracleParameter("V_DATACADASTRO", viewModel.DataCadastro));
+                orcCommand.Parameters.add(new OracleParameter("V_DESCRICAOOPCIONAL", viewModel.DescricaoOpcional));
+                orcCommand.Parameters.add(new OracleParameter("V_STATUS", viewModel.Status));
+
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertReclamacaoInstalacao, 
-                    new OracleCommand());
+                    orcCommand);
                 return result;
             }
             catch (Exception x)
@@ -37,7 +45,7 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Conectar com o banco e fazer o insert
+                //TODO: Fazer proc
                 List<ReclamacaoInstalacao> result = await DbControl.ExecuteProcWithReturnAsync<ReclamacaoInstalacao>(
                     StoredProcedure.GetReclamacaoInstalacao,
                     new OracleCommand());

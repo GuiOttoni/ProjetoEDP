@@ -19,10 +19,15 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Corrigir para realmente funcionar e inserir no banco
+                OracleCommand orcCommand = new OracleCommand();
+                
+                orcCommand.Parameters.Add(new OracleParameter("V_CODIGO_CLIENTE", viewModel.CodigoCliente));
+                orcCommand.Parameters.Add(new OracleParameter("V_CODIGO_REGIAO", viewModel.CodigoRegiao));
+                orcCommand.Parameters.Add(new OracleParameter("V_DESCRICAO", viewModel.Descricao));
+                
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertChamado,
-                    new OracleCommand());
+                    orcCommand);
                 return result;
             }
             catch (Exception x)

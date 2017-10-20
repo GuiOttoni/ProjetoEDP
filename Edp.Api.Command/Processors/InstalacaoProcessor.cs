@@ -19,10 +19,14 @@ namespace Edp.Api.Command.Processors
         {
             try
             {
-                //TODO: Corrigir para realmente funcionar e inserir no banco
+                OracleCommand orcCommand = new OracleCommand();
+                
+                orcCommand.Parameters.add(new OracleParameter("V_CODIGO_CLIENTE", viewModel.CodigoCliente));
+                orcCommand.Parameters.add(new OracleParameter("V_CODIGO_REGIAO", viewModel.CodigoRegiao));
+
                 var result = await DbControl.ExecuteProcWithReturnAsync(
                     StoredProcedure.InsertInstalacao,
-                    new OracleCommand());
+                    orcCommand);
                 return result;
             }
             catch (Exception x)
