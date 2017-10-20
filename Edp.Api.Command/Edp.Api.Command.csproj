@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="105.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EDP.Api.Core\EDP.Api.Core.csproj" />
+    <ProjectReference Include="..\Edp.Api.Database\Edp.Api.Database.csproj" />
+  </ItemGroup>
+
+</Project>
